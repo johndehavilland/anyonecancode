@@ -31,7 +31,12 @@ export default new Vuex.Store({
       axios
         .get(`${imageApiUrl}images`)
         .then((response) => {
-          context.commit("setImageList", response.data);
+          if(imageApiUrl.length !== 0){
+            context.commit("setImageList", response.data);
+            }
+            else{
+              context.commit("setImageList", []);
+            }
         })
         .catch((error) => {
           context.commit("setImageList", []);
